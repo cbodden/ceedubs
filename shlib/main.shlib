@@ -1,0 +1,47 @@
+function main()
+{
+    LC_ALL=C
+    LANG=C
+    set -e
+    set -o nounset
+    set -o pipefail
+    set -u
+    readonly PROGNAME=$(basename $0)
+    readonly PROGIDR=$(readlink -m $(dirname $0))
+    trap 'echo "${PROGNAME}: Ouch! Quitting." 1>&2 ; exit 1' 1 2 3 9 15
+
+    clear
+    readonly RED=$(tput setaf 1)
+    readonly BLU=$(tput setaf 4)
+    readonly GRN=$(tput setaf 40)
+    readonly CLR=$(tput sgr0)
+
+    local DEPS="play"
+    local ITER
+    for ITER in ${DEPS}
+    do
+        if ! command -v ${ITER} &>/dev/null
+        then
+            printf "%s\n" \
+                "${RED}[X] ${ITER} not found.${CLR}"
+
+            exit 1
+        else
+            readonly ${ITER^^}="$(which ${ITER})"
+        fi
+    done
+
+    if [[ ! -e "/usr/dict/words" && ! -e "/usr/share/dict/words" ]]
+    then
+        printf "%s\n" \
+            "${RED}[X] Wordlist not found.${CLR}"
+
+        exit 1
+    else
+        [[ -e "/usr/dict/words" ]] \
+            && readonly _WL="/usr/dict/words"
+
+        [[ -e "/usr/share/dict/words" ]] \
+            && readonly _WL="/usr/share/dict/words"
+    fi
+}

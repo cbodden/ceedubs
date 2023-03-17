@@ -1,0 +1,74 @@
+function word_length() {
+    ## check if GLOBAL-LENGTH is empty.
+    if [[ -z ${GLOBAL_LENGTH} ]]
+    then
+        printf "%s" \
+            "Enter length of word or press enter for default(5) [1-20]: "
+
+        read LEN
+        LEN=${LEN:-5}
+    else
+        local GL=$(echo ${GLOBAL_LENGTH} \
+            | tr '[:lower:]' '[:upper:]' )
+
+        local GRML=$(echo ${GLOBAL_RANDOM_MAX_LENGTH} \
+            | tr '[:lower:]' '[:upper:]' )
+
+        ## check if GL is an integer or RANDOM
+        if ! [[ ${GL} =~ ^-?[0-9]+$ ]]
+        then
+            ## "RANDOM" set the value
+            if [[ ${GL} = RANDOM ]]
+            then
+                if [[ ${GRML} =~ ^-?[0-9]+$ ]]
+                then
+                    if  [[ ${GRML} -ge 1 && ${GRML} -le 20 ]]
+                    then
+                        LEN=${GRML}
+                    else
+                        printf "%s\n" \
+                            "${RED}[X] Fix GLOBAL_RANDOM_MAX_LENGTH${CLR}"
+
+                        exit 1
+                    fi
+                else
+                    LEN=$(shuf -i 1-20 -n 1)
+
+                fi
+            fi
+        else
+            if  [[ ${GL} -ge 1 || ${GL} -le 20 ]]
+            then
+                LEN=${GL}
+            else
+                printf "%s\n" \
+                    "${RED}[X] Fix GLOBAL_LENGTH${CLR}"
+
+                exit 1
+            fi
+        fi
+    fi
+
+    if ! [[ ${LEN} =~ ^-?[0-9]+$ ]]
+    then
+        printf "%s\n" \
+            "${RED}[X] Length must be a number only${CLR}"
+
+        len_word
+    else
+        if [[ "${LEN}" -lt 1 || "${LEN}" -gt 20 ]]
+        then
+            printf "%s\n" \
+                "${RED}[X] Length must be between 1-20${CLR}"
+
+            len_word
+        fi
+    fi
+
+    W_IN=$( awk -v var1=${LEN} 'length() == var1' ${_WL} \
+        | shuf -n $(shuf -i 1-1 -n 1) \
+        | tr '[:lower:]' '[:upper:]' \
+    )
+
+    _WORD="${W_IN// /}"
+}

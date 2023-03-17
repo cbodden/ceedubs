@@ -1,0 +1,31 @@
+function cw_out() {
+    printf "%s\n" \
+        "Practice word is : ${BLU}${_WORD}${CLR}"
+
+    for (( ITER1=0; ITER1<${#_WORD}; ITER1++ ))
+    do
+        local CHAR="${_WORD:${ITER1}:1}"
+        local MSG="${CW_DICT[$CHAR]}"
+
+        printf "%s\n" \
+            "Letter is ${GRN}${CHAR}${CLR} : ${GRN}${CW_DICT[$CHAR]}${CLR}"
+
+        ${WRD_SPC}
+
+        local ITER2=0
+        while [[ ITER2 -lt ${#MSG} ]]
+        do
+            _CW="${MSG:${ITER2}:1}"
+            if [[ "${_CW}" == "-" ]]
+            then
+                ${DAH_SND}
+                ${CHR_SPC}
+            elif [[ "${_CW}" == "." ]]
+            then
+                ${DIT_SND}
+                ${CHR_SPC}
+            fi
+            ITER2=$((ITER2+1))
+        done
+    done
+}
