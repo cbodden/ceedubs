@@ -11,7 +11,7 @@ ceedubs.sh
 
 Usage
 ----
-![ceedubs](images/ceedubs.gif "info screenshot")
+![ceedubs](images/ceedubs.gif)
 
 <pre><code>
 
