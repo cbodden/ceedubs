@@ -40,14 +40,17 @@ function word_speed(){
 
             word_speed
         else
-            [[ "${SPEED}" -eq 1 ]] \
-                && _TIME="301070"
-
-            [[ "${SPEED}" -eq 2 ]] \
-                && _TIME="200652"
-
-            [[ "${SPEED}" -eq 3 ]] \
-                && _TIME="100326"
+            case "${SPEED}" in
+                '1')
+                    _TIME="301070"
+                    ;;
+                '2')
+                    _TIME="200652"
+                    ;;
+                '3')
+                    _TIME="100326"
+                    ;;
+            esac
         fi
     fi
 }
