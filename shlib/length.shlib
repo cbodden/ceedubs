@@ -1,5 +1,9 @@
 function length() {
-    ## check if GLOBAL-LENGTH is empty.
+    ## set a default length of five and initialize the var
+    LEN=${LEN:-5}
+
+    ## check if GLOBAL-LENGTH is empty
+    ## if empty go through interactive
     if [[ -z ${GLOBAL_LENGTH} ]]
     then
         printf "%s" \
@@ -8,10 +12,14 @@ function length() {
         read LEN
         LEN=${LEN:-5}
     else
+        ## if not empty set GL, GL_MIN, & GL_MAX from defaults
         local GL=$(echo ${GLOBAL_LENGTH} \
             | tr '[:lower:]' '[:upper:]' )
 
-        local GRML=$(echo ${GLOBAL_RANDOM_MAX_LENGTH} \
+        local GL_MIN=$(echo ${GLOBAL_RANDOM_MIN_LENGTH} \
+            | tr '[:lower:]' '[:upper:]' )
+
+        local GL_MAX=$(echo ${GLOBAL_RANDOM_MAX_LENGTH} \
             | tr '[:lower:]' '[:upper:]' )
 
         ## check if GL is an integer or RANDOM
@@ -20,26 +28,42 @@ function length() {
             ## "RANDOM" set the value
             if [[ ${GL} = RANDOM ]]
             then
-                if [[ ${GRML} =~ ^-?[0-9]+$ ]]
+                ## check GL_MAX && GL_MIN for sanity
+                if ! [[ ${GL_MIN} =~ ^-?[0-9]+$ ]] || \
+                    [[ ${GL_MIN} -lt 1 || ${GL_MIN} -gt ${GL_MAX} ]]
                 then
-                    if  [[ ${GRML} -ge 1 && ${GRML} -le 20 ]]
-                    then
-                        LEN=${GRML}
-                    else
-                        printf "%s\n" \
-                            "${RED}[X] Fix GLOBAL_RANDOM_MAX_LENGTH${CLR}"
+                    printf "%s\n" \
+                        "${RED}[X] Fix GLOBAL_RANDOM_MIN_LENGTH${CLR}"
 
-                        exit 1
-                    fi
-                else
-                    LEN=$(shuf -i 1-20 -n 1)
-
+                    exit 1
                 fi
+
+                if ! [[ ${GL_MAX} =~ ^-?[0-9]+$ ]] || \
+                    [[ ${GL_MAX} -lt ${GL_MIN} || ${GL_MAX} -gt 20 ]]
+                then
+                    printf "%s\n" \
+                        "${RED}[X] Fix GLOBAL_RANDOM_MAX_LENGTH${CLR}"
+
+                    exit 1
+                fi
+
+                ## if random set generate random LEN
+                LEN=$( shuf -i ${GL_MIN}-${GL_MAX} -n 1 )
+
             fi
         else
+            ## if GL_MIN && GL_MAX are empty set to LEN
             if  [[ ${GL} -ge 1 || ${GL} -le 20 ]]
             then
                 LEN=${GL}
+                local ITER
+                for ITER in "GL_MIN GL_MAX"
+                do
+                    if [[ -z ${ITER^^} || "${ITER^^}" = " " ]]
+                    then
+                        ${ITER^^}=${LEN}
+                    fi
+                done
             else
                 printf "%s\n" \
                     "${RED}[X] Fix GLOBAL_LENGTH${CLR}"

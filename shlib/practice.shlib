@@ -1,0 +1,72 @@
+function practice() {
+    printf "%s\n" \
+        "Please select a number to continue :" "" \
+        "  [${GRN}1${CLR}] Dictionary words" \
+        "  [${GRN}2${CLR}] Random letters, numbers, and symbols" \
+        "  [${GRN}3${CLR}] Random letters and numbers" \
+        "  [${GRN}4${CLR}] Random letters" \
+        "  [${GRN}5${CLR}] Random numbers" ""
+
+    printf "%s" \
+        "Enter selection [12345] : "
+
+    read _CHOICE
+
+
+    printf "%s\n" ""
+
+    case "${_CHOICE}" in
+        1)
+            ## dictionary words
+            _WORD=$( awk -v var1=${LEN} 'length() == var1' ${_WL} \
+                | shuf -n $(shuf -i 1-1 -n 1) \
+                | tr '[:lower:]' '[:upper:]' \
+            )
+
+            ;;
+        ##2)
+        ##    ## random letters, numbers, and symbols
+        ##    _WORD=$( tr -dc 'A-Z0-9$.,?!"+()&:;/_=-@' </dev/urandom \
+        ##        | head -c ${LEN} \
+        ##        ; echo '' \
+        ##    )
+
+        ##    ;;
+        2)
+            ## random letters and numbers
+            _WORD=$( tr -dc A-Z0-9 </dev/urandom \
+                | head -c ${LEN} \
+                ; echo '' \
+            )
+
+            ;;
+
+        3)
+            ## random letters
+            _WORD=$( tr -dc A-Z </dev/urandom \
+                | head -c ${LEN} \
+                ; echo '' \
+            )
+
+            ;;
+        4)
+            ## random numbers
+            _WORD=$( tr -dc 0-9 </dev/urandom \
+                | head -c ${LEN} \
+                ; echo '' \
+            )
+
+            ;;
+        ##6)
+        ##    ## random symbols
+        ##    _WORD=$( tr -dc '@#$%&_+=' </dev/urandom \
+        ##        | head -c ${LEN} \
+        ##        ; echo '' \
+        ##    )
+
+        ##    ;;
+        *)
+            practice
+            ;;
+    esac
+}

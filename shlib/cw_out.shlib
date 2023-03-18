@@ -33,4 +33,6 @@ function cw_out() {
             ITER2=$((ITER2+1))
         done
     done
+
+    printf "%s\n" ""
 }

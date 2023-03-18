@@ -1,5 +1,5 @@
 function speed(){
-    if [[ -z ${GLOBAL_SPEED} ]]
+    if [[ -z ${GLOBAL_SPEED} || "${GLOBAL_SPEED}" = " " ]]
     then
         printf "%s" \
             "Enter speed of morse code or press enter for default(2) [123]: "

@@ -27,28 +27,27 @@
 # USER SETTINGS
 #
 # Speed of morse code / CW
-# - If this is set it will not ask you speed at script run.
+# - This is set to medium by default. To have an interactive prompt just remove
+# - - the number.
 # - This is a number between 1 (slowest) and 3 (fastest)
-GLOBAL_SPEED=""
+# - To disable just leave empty.
+GLOBAL_SPEED="2"
 #
 # Length of words selected
 # - If this is set it will not ask you length at script run.
-# - This is a number between 1 and 20 or RANDOM
-# - If RANDOM is set you can set the RANDOM MAX length or it defaults to 20
-GLOBAL_LENGTH=""
-GLOBAL_RANDOM_MAX_LENGTH=""
+# - If RANDOM is set you can set the MIN & MAX length or it defaults to 5
+GLOBAL_LENGTH="RANDOM"
+GLOBAL_RANDOM_MIN_LENGTH="3"
+GLOBAL_RANDOM_MAX_LENGTH="6"
 #
 #
 # END USER SETTINGS
 #=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=#
 
-
-
 # todo:
 ## multiwords
 ## no output option till end (testing mode)
 ## choice between input or dict file
-## number practice (mix letters and numbers also)
 
 ## source all the shlibs
 for ITER in shlib/*.shlib
@@ -59,8 +58,5 @@ done
 main
 speed
 length
-
-##dict_words
-random_chars
-
+practice
 cw_out

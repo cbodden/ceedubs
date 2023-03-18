@@ -1,8 +1,0 @@
-function dict_words() {
-    W_IN=$( awk -v var1=${LEN} 'length() == var1' ${_WL} \
-        | shuf -n $(shuf -i 1-1 -n 1) \
-        | tr '[:lower:]' '[:upper:]' \
-    )
-
-    _WORD="${W_IN// /}"
-}
