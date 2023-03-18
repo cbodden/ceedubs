@@ -2,10 +2,9 @@ function practice() {
     printf "%s\n" \
         "Please select a number to continue :" "" \
         "  [${GRN}1${CLR}] Dictionary words" \
-        "  [${GRN}2${CLR}] Random letters, numbers, and symbols" \
-        "  [${GRN}3${CLR}] Random letters and numbers" \
-        "  [${GRN}4${CLR}] Random letters" \
-        "  [${GRN}5${CLR}] Random numbers" ""
+        "  [${GRN}2${CLR}] Random letters and numbers" \
+        "  [${GRN}3${CLR}] Random letters" \
+        "  [${GRN}4${CLR}] Random numbers" ""
 
     printf "%s" \
         "Enter selection [12345] : "
