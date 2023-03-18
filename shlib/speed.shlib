@@ -1,4 +1,4 @@
-function word_speed(){
+function speed(){
     if [[ -z ${GLOBAL_SPEED} ]]
     then
         printf "%s" \
@@ -31,14 +31,14 @@ function word_speed(){
         printf "%s\n" \
             "${RED}[X] Speed must be number only${CLR}"
 
-        word_speed
+        speed
     else
         if [[ "${SPEED}" -lt 1 || "${SPEED}" -gt 3 ]]
         then
             printf "%s\n" \
                 "${RED}[X] Speed must be between 1-3${CLR}"
 
-            word_speed
+            speed
         else
             case "${SPEED}" in
                 '1')

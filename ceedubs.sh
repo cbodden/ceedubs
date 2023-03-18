@@ -57,6 +57,10 @@ do
 done
 
 main
-word_speed
-word_length
+speed
+length
+
+##dict_words
+random_chars
+
 cw_out

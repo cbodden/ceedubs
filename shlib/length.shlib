@@ -1,4 +1,4 @@
-function word_length() {
+function length() {
     ## check if GLOBAL-LENGTH is empty.
     if [[ -z ${GLOBAL_LENGTH} ]]
     then
@@ -54,21 +54,14 @@ function word_length() {
         printf "%s\n" \
             "${RED}[X] Length must be a number only${CLR}"
 
-        word_length
+        length
     else
         if [[ "${LEN}" -lt 1 || "${LEN}" -gt 20 ]]
         then
             printf "%s\n" \
                 "${RED}[X] Length must be between 1-20${CLR}"
 
-            word_length
+            length
         fi
     fi
-
-    W_IN=$( awk -v var1=${LEN} 'length() == var1' ${_WL} \
-        | shuf -n $(shuf -i 1-1 -n 1) \
-        | tr '[:lower:]' '[:upper:]' \
-    )
-
-    _WORD="${W_IN// /}"
 }

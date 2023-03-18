@@ -1,0 +1,25 @@
+function random_chars() {
+    printf "%s" \
+        "With [S]ymbols or [W]ithout ? : "
+
+    read R_CHOICE
+
+    case "${R_CHOICE}" in
+        s|S)
+            ## W_IN=$( tr -dc 'A-Z0-9.,?!"()&:;/_=+-$@' </dev/urandom \
+            _WORD=$( tr -dc 'A-Z0-9$.,?!"+()&:;/_=-@' </dev/urandom \
+                | head -c ${LEN} \
+                ; echo '' )
+
+            ;;
+        w|W)
+            _WORD=$( tr -dc A-Z0-9 </dev/urandom \
+                | head -c ${LEN} \
+                ; echo '' )
+
+            ;;
+        *)
+            random_chars
+            ;;
+    esac
+}
