@@ -1,4 +1,9 @@
 function cw_out() {
+    DAH_SND="${PLAY} -q -n synth 0.${_TIME:0:2} sin 700"    ## time: 3
+    DIT_SND="${PLAY} -q -n synth 0.${_TIME:2:2} sin 700"    ## time: 1
+    WRD_SPC="${PLAY} -q -n synth 0.${_TIME:4:2} sin 000"    ## time: 7
+    CHR_SPC="${PLAY} -q -n synth 0.${_TIME:2:2} sin 000"    ## time: 1
+
     printf "%s\n" \
         "Practice word is : ${BLU}${_WORD}${CLR}"
 

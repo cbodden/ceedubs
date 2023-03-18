@@ -54,14 +54,14 @@ function word_length() {
         printf "%s\n" \
             "${RED}[X] Length must be a number only${CLR}"
 
-        len_word
+        word_length
     else
         if [[ "${LEN}" -lt 1 || "${LEN}" -gt 20 ]]
         then
             printf "%s\n" \
                 "${RED}[X] Length must be between 1-20${CLR}"
 
-            len_word
+            word_length
         fi
     fi
 

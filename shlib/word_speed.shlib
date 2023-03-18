@@ -9,6 +9,14 @@ function word_speed(){
     else
         local SPEED=${GLOBAL_SPEED}
 
+        if ! [[ ${SPEED} =~ ^-?[0-9]+$ ]]
+        then
+            printf "%s\n" \
+                "${RED}[X] GLOBAL_SPEED must be number only${CLR}"
+
+            exit 1
+        fi
+
         if [[ ${SPEED} -lt 1 || ${SPEED} -gt 3 ]]
         then
             printf "%s\n" \
@@ -23,14 +31,14 @@ function word_speed(){
         printf "%s\n" \
             "${RED}[X] Speed must be number only${CLR}"
 
-        speed
+        word_speed
     else
         if [[ "${SPEED}" -lt 1 || "${SPEED}" -gt 3 ]]
         then
             printf "%s\n" \
                 "${RED}[X] Speed must be between 1-3${CLR}"
 
-            speed
+            word_speed
         else
             [[ "${SPEED}" -eq 1 ]] \
                 && _TIME="301070"
@@ -42,9 +50,4 @@ function word_speed(){
                 && _TIME="100326"
         fi
     fi
-
-    DAH_SND="${PLAY} -q -n synth 0.${_TIME:0:2} sin 700"    ## time: 3
-    DIT_SND="${PLAY} -q -n synth 0.${_TIME:2:2} sin 700"    ## time: 1
-    WRD_SPC="${PLAY} -q -n synth 0.${_TIME:4:2} sin 000"    ## time: 7
-    CHR_SPC="${PLAY} -q -n synth 0.${_TIME:2:2} sin 000"    ## time: 1
 }
