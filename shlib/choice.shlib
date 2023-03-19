@@ -1,4 +1,6 @@
 function choice() {
+    clear
+
     printf "%s\n" \
         "Please select a number to continue :" "" \
         "  [${GRN}1${CLR}] Dictionary words" \
@@ -23,7 +25,6 @@ function choice() {
             practice ${SHF}
             ;;
         *)
-            clear
             choice
             ;;
     esac

@@ -10,7 +10,6 @@ function main()
     readonly PROGIDR=$(readlink -m $(dirname $0))
     trap 'echo "${PROGNAME}: Ouch! Quitting." 1>&2 ; exit 1' 1 2 3 9 15
 
-    clear
     readonly RED=$(tput setaf 1)
     readonly BLU=$(tput setaf 4)
     readonly GRN=$(tput setaf 40)
