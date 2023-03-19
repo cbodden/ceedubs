@@ -2,7 +2,7 @@ function practice() {
     case "$1" in
         1)
             ## dictionary words
-            _WORD=$( awk -v var1=${LEN} 'length() == var1' ${_WL} \
+            _WORD=$( awk -v var1=${_LEN} 'length() == var1' ${_WL} \
                 | shuf -n $(shuf -i 1-1 -n 1) \
                 | tr '[:lower:]' '[:upper:]' \
             )
@@ -11,7 +11,7 @@ function practice() {
         2)
             ## random letters and numbers
             _WORD=$( tr -dc A-Z0-9 </dev/urandom \
-                | head -c ${LEN} \
+                | head -c ${_LEN} \
                 ; echo '' \
             )
 
@@ -19,7 +19,7 @@ function practice() {
         3)
             ## random letters
             _WORD=$( tr -dc A-Z </dev/urandom \
-                | head -c ${LEN} \
+                | head -c ${_LEN} \
                 ; echo '' \
             )
 
@@ -27,7 +27,7 @@ function practice() {
         4)
             ## random numbers
             _WORD=$( tr -dc 0-9 </dev/urandom \
-                | head -c ${LEN} \
+                | head -c ${_LEN} \
                 ; echo '' \
             )
 

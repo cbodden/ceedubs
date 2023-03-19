@@ -1,6 +1,6 @@
 function length() {
     ## set a default length of five and initialize the var
-    LEN=${LEN:-5}
+    LEN=${_LEN:-5}
 
     ## check if GLOBAL-LENGTH is empty
     ## if empty go through interactive
@@ -10,7 +10,7 @@ function length() {
             "Enter length of word or press enter for default(5) [1-20]: "
 
         read LEN
-        LEN=${LEN:-5}
+        LEN=${_LEN:-5}
     else
         ## if not empty set GL, GL_MIN, & GL_MAX from defaults
         local GL=$(echo ${GLOBAL_LENGTH} \
@@ -61,7 +61,7 @@ function length() {
                 do
                     if [[ -z ${ITER^^} || "${ITER^^}" = " " ]]
                     then
-                        ${ITER^^}=${LEN}
+                        ${ITER^^}=${_LEN}
                     fi
                 done
             else
@@ -73,14 +73,14 @@ function length() {
         fi
     fi
 
-    if ! [[ ${LEN} =~ ^-?[0-9]+$ ]]
+    if ! [[ ${_LEN} =~ ^-?[0-9]+$ ]]
     then
         printf "%s\n" \
             "${RED}[X] Length must be a number only${CLR}"
 
         length
     else
-        if [[ "${LEN}" -lt 1 || "${LEN}" -gt 20 ]]
+        if [[ "${_LEN}" -lt 1 || "${_LEN}" -gt 20 ]]
         then
             printf "%s\n" \
                 "${RED}[X] Length must be between 1-20${CLR}"
