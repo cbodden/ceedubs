@@ -58,5 +58,5 @@ done
 main
 speed
 length
-practice
+choice
 cw_out

@@ -1,20 +1,5 @@
 function practice() {
-    printf "%s\n" \
-        "Please select a number to continue :" "" \
-        "  [${GRN}1${CLR}] Dictionary words" \
-        "  [${GRN}2${CLR}] Random letters and numbers" \
-        "  [${GRN}3${CLR}] Random letters" \
-        "  [${GRN}4${CLR}] Random numbers" ""
-
-    printf "%s" \
-        "Enter selection [12345] : "
-
-    read _CHOICE
-
-
-    printf "%s\n" ""
-
-    case "${_CHOICE}" in
+    case "$1" in
         1)
             ## dictionary words
             _WORD=$( awk -v var1=${LEN} 'length() == var1' ${_WL} \
@@ -23,14 +8,6 @@ function practice() {
             )
 
             ;;
-        ##2)
-        ##    ## random letters, numbers, and symbols
-        ##    _WORD=$( tr -dc 'A-Z0-9$.,?!"+()&:;/_=-@' </dev/urandom \
-        ##        | head -c ${LEN} \
-        ##        ; echo '' \
-        ##    )
-
-        ##    ;;
         2)
             ## random letters and numbers
             _WORD=$( tr -dc A-Z0-9 </dev/urandom \
@@ -39,7 +16,6 @@ function practice() {
             )
 
             ;;
-
         3)
             ## random letters
             _WORD=$( tr -dc A-Z </dev/urandom \
@@ -56,14 +32,6 @@ function practice() {
             )
 
             ;;
-        ##6)
-        ##    ## random symbols
-        ##    _WORD=$( tr -dc '@#$%&_+=' </dev/urandom \
-        ##        | head -c ${LEN} \
-        ##        ; echo '' \
-        ##    )
-
-        ##    ;;
         *)
             practice
             ;;

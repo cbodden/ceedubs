@@ -1,0 +1,30 @@
+function choice() {
+    printf "%s\n" \
+        "Please select a number to continue :" "" \
+        "  [${GRN}1${CLR}] Dictionary words" \
+        "  [${GRN}2${CLR}] Random letters and numbers" \
+        "  [${GRN}3${CLR}] Random letters" \
+        "  [${GRN}4${CLR}] Random numbers" \
+        "  [${GRN}5${CLR}] Random choice from above" ""
+
+    printf "%s" \
+        "Enter selection [12345] : "
+
+    read _CHOICE
+
+    printf "%s\n" ""
+
+    case "${_CHOICE}" in
+        [1-4])
+            practice ${_CHOICE}
+            ;;
+        5)
+            local SHF=$(shuf -i 1-4 -n 1)
+            practice ${SHF}
+            ;;
+        *)
+            clear
+            choice
+            ;;
+    esac
+}
