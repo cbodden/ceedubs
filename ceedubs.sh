@@ -3,7 +3,7 @@
 #===============================================================================
 #
 #          FILE: ceedubs.sh
-#         USAGE: ./ceedubs.sh [options]
+#         USAGE: ./ceedubs.sh
 #   DESCRIPTION:
 #       OPTIONS:
 #  REQUIREMENTS: sox (play) and wordlist
@@ -12,7 +12,7 @@
 #        AUTHOR: Cesar B. (), cesar@poa.nyc
 #  ORGANIZATION: poa.nyc
 #       CREATED: 2023-03-17
-#      REVISION: 1
+#      REVISION: 2
 #       LICENSE: Copyright (c) 2023, cesar@poa.nyc
 #                All rights reserved.
 #

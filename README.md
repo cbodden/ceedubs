@@ -14,8 +14,11 @@ Usage
 ![ceedubs](images/ceedubs.gif)
 
 <pre><code>
+git clone https://github.com/cbodden/ceedubs.git
 
+cd ceedubs
 
+./ceedubs.sh
 </code></pre>
 
 Requirements
