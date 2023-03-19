@@ -1,6 +1,6 @@
 function length() {
     ## set a default length of five and initialize the var
-    LEN=${_LEN:-5}
+    _LEN=${_LEN:-5}
 
     ## check if GLOBAL-LENGTH is empty
     ## if empty go through interactive
