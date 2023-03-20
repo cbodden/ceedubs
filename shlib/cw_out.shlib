@@ -5,7 +5,9 @@ function cw_out() {
     CHR_SPC="${PLAY} -q -n synth 0.${_TIME:2:2} sin 000"    ## time: 1
 
     printf "%s\n" \
-        "Practice word is : ${BLU}${_WORD}${CLR}"
+        "" "Practice word is : ${BLU}${_WORD}${CLR}"
+
+    ${WRD_SPC}
 
     for (( ITER1=0; ITER1<${#_WORD}; ITER1++ ))
     do

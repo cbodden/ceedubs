@@ -7,10 +7,12 @@ function choice() {
         "  [${GRN}2${CLR}] Random letters and numbers" \
         "  [${GRN}3${CLR}] Random letters" \
         "  [${GRN}4${CLR}] Random numbers" \
-        "  [${GRN}5${CLR}] Random choice from above" ""
+        "  [${GRN}5${CLR}] Random choice from above" \
+        "  [${GRN}6${CLR}] Multiple dictionary words" \
+        "  [${GRN}7${CLR}] Multiple random choices from above" ""
 
     printf "%s" \
-        "Enter selection [12345] : "
+        "Enter selection [1234567] : "
 
     read _CHOICE
 
@@ -23,6 +25,24 @@ function choice() {
         5)
             local SHF=$(shuf -i 1-4 -n 1)
             practice ${SHF}
+            ;;
+        [6-7])
+            printf "%s" \
+                "  How many words : "
+
+            read _MULTI
+
+            if ! [[ ${_MULTI} =~ ^-?[0-9]+$ ]]
+            then
+                choice
+            else
+                if [[ "${_CHOICE}" = "6" ]]
+                then
+                    practice LOOP_DCT ${_MULTI}
+                else
+                    practice LOOP_RND ${_MULTI}
+                fi
+            fi
             ;;
         *)
             choice
