@@ -27,14 +27,14 @@
 # USER SETTINGS
 #
 # Speed of morse code / CW
-# - This is set to medium by default. To have an interactive prompt just remove
-# - - the number.
+# - This is set to medium by default
+# - To have an interactive prompt just remove the number
 # - This is a number between 1 (slowest) and 3 (fastest)
-# - To disable just leave empty.
+# - To disable just leave empty
 GLOBAL_SPEED="2"
 #
 # Length of words selected
-# - If this is set it will not ask you length at script run.
+# - This is set to RANDOM by default
 # - If RANDOM is set you can set the MIN & MAX length or it defaults to 5
 GLOBAL_LENGTH="RANDOM"
 GLOBAL_RANDOM_MIN_LENGTH="3"
@@ -45,7 +45,6 @@ GLOBAL_RANDOM_MAX_LENGTH="6"
 #=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=#
 
 # todo:
-## multiwords
 ## no output option till end (testing mode)
 ## choice between input or dict file
 
@@ -59,4 +58,3 @@ main
 speed
 length
 choice
-## cw_out
